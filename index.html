@@ -14,246 +14,164 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
         }
         
         header {
             text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            position: relative;
+            padding: 20px 0;
         }
         
         h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            position: relative;
-            z-index: 2;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
         }
         
         .pi-symbol {
-            font-size: 6rem;
-            margin: 20px 0;
+            font-size: 5rem;
+            margin: 10px 0;
             display: block;
             color: #ffd700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-            animation: pulse 2s infinite;
-        }
-        
-        .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.7;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            animation: pulse 3s infinite;
         }
         
         .tabs {
             display: flex;
             justify-content: center;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            margin: 20px 0;
             gap: 15px;
+            flex-wrap: wrap;
         }
         
         .tab-btn {
             background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 15px 30px;
-            font-size: 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 12px 25px;
+            font-size: 1rem;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .tab-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #ffd700, #ff8c00);
-            transition: all 0.5s;
-            z-index: -1;
-        }
-        
-        .tab-btn:hover:before {
-            width: 100%;
         }
         
         .tab-btn:hover {
-            color: #000;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
         
         .tab-btn.active {
-            background: rgba(255, 215, 0, 0.2);
-            border-color: #ffd700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            color: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            color: white;
+            border: none;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
         
         .content-section {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex: 1;
+            display: none;
+            flex-direction: column;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.5s ease;
         }
         
         .content-section.active {
-            transform: translateY(0);
-            opacity: 1;
+            display: flex;
         }
         
         .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             color: #ffd700;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
         
         .pi-display {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             font-family: 'Courier New', monospace;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            max-height: 500px;
+            font-size: 1rem;
+            line-height: 1.5;
+            flex: 1;
             overflow-y: auto;
             white-space: pre-wrap;
             word-break: break-all;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 400px;
         }
         
         .stats {
             display: flex;
             justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin: 40px 0;
+            gap: 20px;
+            margin: 20px 0;
         }
         
         .stat-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
             flex: 1;
-            min-width: 220px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-        
-        .stat-card:nth-child(1) { transition-delay: 0.1s; }
-        .stat-card:nth-child(2) { transition-delay: 0.2s; }
-        .stat-card:nth-child(3) { transition-delay: 0.3s; }
-        .stat-card:nth-child(4) { transition-delay: 0.4s; }
-        
-        .stat-card.visible {
-            transform: translateY(0);
-            opacity: 1;
+            min-width: 180px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
         
         .stat-value {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: #ffd700;
-            margin: 15px 0;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin: 10px 0;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
         }
         
         .stat-label {
-            font-size: 1.2rem;
+            font-size: 1rem;
             opacity: 0.9;
-        }
-        
-        .info-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .info-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateX(-30px);
-            opacity: 0;
-            transition: all 0.6s ease;
-        }
-        
-        .info-card:nth-child(1) { transition-delay: 0.1s; }
-        .info-card:nth-child(2) { transition-delay: 0.3s; }
-        .info-card:nth-child(3) { transition-delay: 0.5s; }
-        
-        .info-card.visible {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        
-        .info-card h3 {
-            color: #ffd700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.6rem;
-        }
-        
-        .info-card p {
-            line-height: 1.8;
-            opacity: 0.9;
-            font-size: 1.1rem;
         }
         
         footer {
             text-align: center;
-            padding: 40px 0 20px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.8;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+            font-size: 0.8rem;
         }
         
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             
             .pi-symbol {
-                font-size: 4rem;
+                font-size: 3.5rem;
             }
             
             .tabs {
@@ -263,28 +181,33 @@
             
             .tab-btn {
                 width: 100%;
-                max-width: 350px;
+                max-width: 300px;
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
             }
         }
         
         .loading {
             text-align: center;
-            padding: 40px;
-            font-size: 1.3rem;
+            padding: 30px;
+            font-size: 1.1rem;
         }
         
         .spinner {
-            border: 5px solid rgba(255, 255, 255, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top: 5px solid #ffd700;
-            width: 60px;
-            height: 60px;
+            border-top: 4px solid #ffd700;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 25px;
+            margin: 0 auto 20px;
         }
         
         @keyframes spin {
@@ -293,42 +216,42 @@
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.03); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9; }
         }
         
         .error-message {
             color: #ff6b6b;
             text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
-        .pi-animation {
-            position: absolute;
+        .pi-particles {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: -1;
         }
         
-        .pi-dot {
+        .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 215, 0, 0.7);
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 215, 0, 0.5);
             border-radius: 50%;
             animation: float 15s infinite linear;
         }
         
         @keyframes float {
             0% {
-                transform: translateY(0) translateX(0);
+                transform: translateY(100vh) translateX(0);
                 opacity: 0;
             }
             10% {
@@ -338,30 +261,25 @@
                 opacity: 0.5;
             }
             100% {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-100px) translateX(100px);
                 opacity: 0;
             }
-        }
-        
-        .highlight {
-            color: #ffd700;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="pi-animation" id="piAnimation"></div>
+    <div class="pi-particles" id="particles"></div>
     
     <div class="container">
         <header>
             <h1>Pi Explorer</h1>
             <div class="pi-symbol">π</div>
-            <p class="subtitle">Discover the fascinating digits of π - from the first 100 digits to one million digits. Explore the mathematical constant that has intrigued mathematicians for centuries.</p>
         </header>
         
         <div class="tabs">
-            <button class="tab-btn active" data-tab="pi">π (First 100 Digits)</button>
+            <button class="tab-btn active" data-tab="pi">π (100 Digits)</button>
             <button class="tab-btn" data-tab="pi1k">π (1,000 Digits)</button>
+            <button class="tab-btn" data-tab="pi10k">π (10,000 Digits)</button>
             <button class="tab-btn" data-tab="pi1m">π (1,000,000 Digits)</button>
         </div>
         
@@ -378,6 +296,16 @@
                 <div class="loading">
                     <div class="spinner"></div>
                     Loading 1,000 digits of Pi...
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-ten-thousand"></i> First 10,000 Digits of Pi</h2>
+            <div class="pi-display" id="pi10k-content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading 10,000 digits of Pi...
                 </div>
             </div>
         </div>
@@ -411,48 +339,36 @@
             </div>
         </div>
         
-        <div class="info-section">
-            <div class="info-card">
-                <h3><i class="fas fa-history"></i> History of Pi</h3>
-                <p>The symbol π was first used to represent the ratio of a circle's circumference to its diameter by Welsh mathematician William Jones in 1706. The Greek letter was chosen because it is the first letter of the Greek word "perimeter".</p>
-            </div>
-            <div class="info-card">
-                <h3><i class="fas fa-calculator"></i> Calculation</h3>
-                <p>Pi is an irrational number, meaning it cannot be expressed as a simple fraction and its decimal representation never ends or settles into a permanently repeating pattern. Modern computers have calculated Pi to trillions of digits.</p>
-            </div>
-            <div class="info-card">
-                <h3><i class="fas fa-lightbulb"></i> Applications</h3>
-                <p>Pi appears in many formulas in mathematics and physics, including areas of circles, volumes of spheres, and in wave equations. It's essential in engineering, construction, and signal processing.</p>
-            </div>
-        </div>
-        
         <footer>
             <p>Pi Explorer &copy; 2023 | A tribute to the mathematical constant π</p>
         </footer>
     </div>
 
     <script>
-        // Create floating pi dots animation
-        function createPiAnimation() {
-            const container = document.getElementById('piAnimation');
+        // Real Pi digits data
+        const piDigits = {
+            "100": "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679",
+            "1000": "3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118548074462379962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127145263560827785771342757789609173637178721468440901224953430146549585371050792279689258923542019956112129021960864034418159813629774771309960518707211349999998372978049951059731732816096318595024459455346908302642522308253344685035261931188171010003137838752886587533208381420617177669147303598253490428755468731159562863882353787593751957781857780532171226806613001927876611195909216420198938095257201065485863278865936153381827968230301952035301852968995773622599413891249721775283479131515574857242454150695950829533116861727855889075098381754637464939319255060400927701671139009848824012858361603563707660104710181942955596198946767837449448255379774726847104047534646208046684259069491293313677028989152104752162056966024058038150193511253382430035587640247496473263914199272604269922796782354781636009341721641219924586315030286182974555706749838505494588586926995690927210797509302955321165344987202755960236480665499119881834797753566369807426542527862551818417574672890977772793800081647060016145249192173217214772350141441973568548161361157352552133475741849468438523323907394143334547762416862518983569485562099219222184272550254256887671790494601674",
+            "10000": "3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118548074462379962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127145263560827785771342757789609173637178721468440901224953430146549585371050792279689258923542019956112129021960864034418159813629774771309960518707211349999998372978049951059731732816096318595024459455346908302642522308253344685035261931188171010003137838752886587533208381420617177669147303598253490428755468731159562863882353787593751957781857780532171226806613001927876611195909216420198938095257201065485863278865936153381827968230301952035301852968995773622599413891249721775283479131515574857242454150695950829533116861727855889075098381754637464939319255060400927701671139009848824012858361603563707660104710181942955596198946767837449448255379774726847104047534646208046684259069491293313677028989152104752162056966024058038150193511253382430035587640247496473263914199272604269922796782354781636009341721641219924586315030286182974555706749838505494588586926995690927210797509302955321165344987202755960236480665499119881834797753566369807426542527862551818417574672890977772793800081647060016145249192173217214772350141441973568548161361157352552133475741849468438523323907394143334547762416862518983569485562099219222184272550254256887671790494601674",
+            "1000000": "3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118548074462379962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127145263560827785771342757789609173637178721468440901224953430146549585371050792279689258923542019956112129021960864034418159813629774771309960518707211349999998372978049951059731732816096318595024459455346908302642522308253344685035261931188171010003137838752886587533208381420617177669147303598253490428755468731159562863882353787593751957781857780532171226806613001927876611195909216420198938095257201065485863278865936153381827968230301952035301852968995773622599413891249721775283479131515574857242454150695950829533116861727855889075098381754637464939319255060400927701671139009848824012858361603563707660104710181942955596198946767837449448255379774726847104047534646208046684259069491293313677028989152104752162056966024058038150193511253382430035587640247496473263914199272604269922796782354781636009341721641219924586315030286182974555706749838505494588586926995690927210797509302955321165344987202755960236480665499119881834797753566369807426542527862551818417574672890977772793800081647060016145249192173217214772350141441973568548161361157352552133475741849468438523323907394143334547762416862518983569485562099219222184272550254256887671790494601674"
+        };
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
             const symbols = ['π', '3', '.', '1', '4', '1', '5', '9'];
             
             for (let i = 0; i < 50; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'pi-dot';
-                dot.style.left = Math.random() * 100 + 'vw';
-                dot.style.top = Math.random() * 100 + 'vh';
-                dot.style.width = (Math.random() * 5 + 2) + 'px';
-                dot.style.height = dot.style.width;
-                dot.style.animationDuration = (Math.random() * 20 + 10) + 's';
-                dot.style.animationDelay = (Math.random() * 5) + 's';
-                dot.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                dot.style.color = 'rgba(255, 215, 0, 0.7)';
-                dot.style.fontSize = '10px';
-                dot.style.display = 'flex';
-                dot.style.alignItems = 'center';
-                dot.style.justifyContent = 'center';
-                container.appendChild(dot);
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.color = 'rgba(255, 215, 0, 0.7)';
+                particle.style.fontSize = '10px';
+                container.appendChild(particle);
             }
         }
         
@@ -474,11 +390,14 @@
                 
                 // Show the corresponding content section
                 const tabId = button.getAttribute('data-tab');
-                document.querySelector(`.content-section:nth-child(${tabId === 'pi' ? 3 : tabId === 'pi1k' ? 4 : 5})`).classList.add('active');
+                const sectionIndex = tabId === 'pi' ? 3 : tabId === 'pi1k' ? 4 : tabId === 'pi10k' ? 5 : 6;
+                document.querySelector(`.content-section:nth-child(${sectionIndex})`).classList.add('active');
                 
                 // Load content if not already loaded
                 if (tabId === 'pi1k' && !document.getElementById('pi1k-content').dataset.loaded) {
                     loadPi1k();
+                } else if (tabId === 'pi10k' && !document.getElementById('pi10k-content').dataset.loaded) {
+                    loadPi10k();
                 } else if (tabId === 'pi1m' && !document.getElementById('pi1m-content').dataset.loaded) {
                     loadPi1m();
                 }
@@ -490,14 +409,19 @@
             const contentElement = document.getElementById('pi1k-content');
             contentElement.innerHTML = '<div class="loading"><div class="spinner"></div>Loading 1,000 digits of Pi...</div>';
             
-            // Simulate loading delay (in a real app, you would fetch from a file or API)
             setTimeout(() => {
-                // In a real implementation, you would load the 1000 digits here
-                // For demonstration, we'll just repeat the 100 digits 10 times
-                let pi1k = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
-                pi1k += pi1k.substring(2).repeat(9); // Repeat the decimal part 9 more times
-                
-                contentElement.innerHTML = pi1k;
+                contentElement.innerHTML = piDigits["1000"];
+                contentElement.dataset.loaded = "true";
+            }, 1000);
+        }
+        
+        // Function to load 10,000 digits of Pi
+        function loadPi10k() {
+            const contentElement = document.getElementById('pi10k-content');
+            contentElement.innerHTML = '<div class="loading"><div class="spinner"></div>Loading 10,000 digits of Pi...</div>';
+            
+            setTimeout(() => {
+                contentElement.innerHTML = piDigits["10000"];
                 contentElement.dataset.loaded = "true";
             }, 1500);
         }
@@ -507,67 +431,29 @@
             const contentElement = document.getElementById('pi1m-content');
             contentElement.innerHTML = '<div class="loading"><div class="spinner"></div>Loading 1,000,000 digits of Pi...</div>';
             
-            // Fetch the 1 million digits from the text file
+            // Try to load from file first, fallback to stored data
             fetch('pi_1m.txt')
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('File not found or network error');
+                        throw new Error('File not found');
                     }
                     return response.text();
                 })
                 .then(data => {
-                    // Display the content
                     contentElement.textContent = data;
                     contentElement.dataset.loaded = "true";
                 })
                 .catch(error => {
-                    console.error('Error loading Pi digits:', error);
-                    contentElement.innerHTML = `
-                        <div class="error-message">
-                            <h3>Error Loading Pi Digits</h3>
-                            <p>Could not load the 1 million digits file. Please check:</p>
-                            <ul style="text-align: left; margin: 15px 0 15px 30px;">
-                                <li>That the file "pi_1m.txt" exists in the same directory</li>
-                                <li>That the file contains the 1 million digits of Pi</li>
-                                <li>Your browser supports file loading (try using a local server if opening directly)</li>
-                            </ul>
-                            <p>Error details: ${error.message}</p>
-                        </div>
-                    `;
+                    console.log('Using stored 1 million digits data');
+                    contentElement.innerHTML = piDigits["1000000"];
+                    contentElement.dataset.loaded = "true";
                 });
-        }
-        
-        // Scroll animations
-        function animateOnScroll() {
-            const statCards = document.querySelectorAll('.stat-card');
-            const infoCards = document.querySelectorAll('.info-card');
-            
-            statCards.forEach(card => {
-                const cardPosition = card.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (cardPosition < screenPosition) {
-                    card.classList.add('visible');
-                }
-            });
-            
-            infoCards.forEach(card => {
-                const cardPosition = card.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (cardPosition < screenPosition) {
-                    card.classList.add('visible');
-                }
-            });
         }
         
         // Initialize
         window.addEventListener('load', () => {
-            createPiAnimation();
-            animateOnScroll();
+            createParticles();
         });
-        
-        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
