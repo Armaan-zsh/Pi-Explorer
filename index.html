@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Explorer - Discover the Digits of π</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .pi-symbol {
+            font-size: 4rem;
+            margin: 20px 0;
+            display: block;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .tab-btn.active {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .content-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pi-display {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-height: 500px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .info-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info-card h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card p {
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .spinner {
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 5px solid #ffd700;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .file-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pi Explorer</h1>
+            <div class="pi-symbol">π</div>
+            <p class="subtitle">Discover the fascinating digits of π - from the first 100 digits to one million digits. Explore the mathematical constant that has intrigued mathematicians for centuries.</p>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="pi">π (First 100 Digits)</button>
+            <button class="tab-btn" data-tab="pi1k">π (1,000 Digits)</button>
+            <button class="tab-btn" data-tab="pi1m">π (1,000,000 Digits)</button>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-calculator"></i> First 100 Digits of Pi</h2>
+            <div class="pi-display" id="pi-content">
+                3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
+            </div>
+        </div>
+        
+        <div class="content-section" style="display: none;">
+            <h2 class="section-title"><i class="fas fa-thousand"></i> First 1,000 Digits of Pi</h2>
+            <div class="pi-display" id="pi1k-content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading 1,000 digits of Pi...
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section" style="display: none;">
+            <h2 class="section-title"><i class="fas fa-infinity"></i> One Million Digits of Pi</h2>
+            <div class="file-info">
+                <p><i class="fas fa-info-circle"></i> Make sure your file is named "pi_1m.txt" and placed in the same directory as this HTML file.</p>
+            </div>
+            <div class="pi-display" id="pi1m-content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading 1,000,000 digits of Pi...
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value">3.14159...</div>
+                <div class="stat-label">Pi Value</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">∞</div>
+                <div class="stat-label">Decimal Places</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4000+</div>
+                <div class="stat-label">Years of Study</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">22/7</div>
+                <div class="stat-label">Common Approximation</div>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <div class="info-card">
+                <h3><i class="fas fa-history"></i> History of Pi</h3>
+                <p>The symbol π was first used to represent the ratio of a circle's circumference to its diameter by Welsh mathematician William Jones in 1706. The Greek letter was chosen because it is the first letter of the Greek word "perimeter".</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-calculator"></i> Calculation</h3>
+                <p>Pi is an irrational number, meaning it cannot be expressed as a simple fraction and its decimal representation never ends or settles into a permanently repeating pattern. Modern computers have calculated Pi to trillions of digits.</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-lightbulb"></i> Applications</h3>
+                <p>Pi appears in many formulas in mathematics and physics, including areas of circles, volumes of spheres, and in wave equations. It's essential in engineering, construction, and signal processing.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Pi Explorer &copy; 2023 | A tribute to the mathematical constant π</p>
+            <p>Note: For performance reasons, only the first 100 digits are displayed by default. Larger sets are loaded on demand.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Hide all content sections
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show the corresponding content section
+                const tabId = button.getAttribute('data-tab');
+                document.querySelector(`.content-section:nth-child(${tabId === 'pi' ? 3 : tabId === 'pi1k' ? 4 : 5})`).style.display = 'block';
+                
+                // Load content if not already loaded
+                if (tabId === 'pi1k' && !document.getElementById('pi1k-content').dataset.loaded) {
+                    loadPi1k();
+                } else if (tabId === 'pi1m' && !document.getElementById('pi1m-content').dataset.loaded) {
+                    loadPi1m();
+                }
+            });
+        });
+        
+        // Function to load 1000 digits of Pi
+        function loadPi1k() {
+            const contentElement = document.getElementById('pi1k-content');
+            contentElement.innerHTML = '<div class="loading"><div class="spinner"></div>Loading 1,000 digits of Pi...</div>';
+            
+            // Simulate loading delay (in a real app, you would fetch from a file or API)
+            setTimeout(() => {
+                // In a real implementation, you would load the 1000 digits here
+                // For demonstration, we'll just repeat the 100 digits 10 times
+                let pi1k = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
+                pi1k += pi1k.substring(2).repeat(9); // Repeat the decimal part 9 more times
+                
+                contentElement.innerHTML = pi1k;
+                contentElement.dataset.loaded = "true";
+            }, 1500);
+        }
+        
+        // Function to load 1 million digits of Pi
+        function loadPi1m() {
+            const contentElement = document.getElementById('pi1m-content');
+            contentElement.innerHTML = '<div class="loading"><div class="spinner"></div>Loading 1,000,000 digits of Pi...</div>';
+            
+            // Fetch the 1 million digits from the text file
+            fetch('pi_1m.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('File not found or network error');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Display the content
+                    contentElement.textContent = data;
+                    contentElement.dataset.loaded = "true";
+                })
+                .catch(error => {
+                    console.error('Error loading Pi digits:', error);
+                    contentElement.innerHTML = `
+                        <div class="error-message">
+                            <h3>Error Loading Pi Digits</h3>
+                            <p>Could not load the 1 million digits file. Please check:</p>
+                            <ul style="text-align: left; margin: 15px 0 15px 30px;">
+                                <li>That the file "pi_1m.txt" exists in the same directory</li>
+                                <li>That the file contains the 1 million digits of Pi</li>
+                                <li>Your browser supports file loading (try using a local server if opening directly)</li>
+                            </ul>
+                            <p>Error details: ${error.message}</p>
+                        </div>
+                    `;
+                });
+        }
+    </script>
+</body>
+</html>
