@@ -222,7 +222,7 @@
             padding: 15px;
             font-family: 'Courier New', monospace;
             font-size: clamp(0.7rem, 2.5vw, 1rem);
-            line-height: 1.4;
+            line-height: 1.2; /* Reduced line height for tighter spacing */
             flex: 1;
             overflow-y: auto;
             white-space: pre-wrap;
@@ -230,7 +230,8 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             max-height: 60vh;
             min-height: 200px;
-            color: white; /* Ensuring digits are white */
+            color: white;
+            text-align: center; /* Center align the pi digits */
         }
         
         .stats {
@@ -328,19 +329,19 @@
             animation: float 15s infinite linear;
         }
         
-        /* Custom Pi cursor */
+        /* Custom Pi cursor - Made slightly bigger */
         #pi-cursor {
             position: fixed;
             top: 0;
             left: 0;
-            width: 24px;
-            height: 24px;
+            width: 30px; /* Increased from 24px to 30px */
+            height: 30px; /* Increased from 24px to 30px */
             display: flex;
             align-items: center;
             justify-content: center;
             color: #ffd700;
             font-weight: 800;
-            font-size: 18px;
+            font-size: 22px; /* Increased from 18px to 22px */
             pointer-events: none;
             filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
             transform: translate(-50%, -50%);
@@ -549,7 +550,7 @@
         </div>
         
         <footer>
-            <p>Pi Explorer &copy; 2023 | A tribute to the mathematical constant π</p>
+            <p>Pi Explorer &copy; 2025 | A tribute to the mathematical constant π</p>
         </footer>
     </div>
 
