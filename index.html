@@ -252,6 +252,35 @@
             }
         }
         
+        /* Custom Pi cursor */
+        #pi-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-weight: 800;
+            font-size: 18px;
+            pointer-events: none;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.06s linear, opacity 0.2s ease;
+            opacity: 0.9;
+        }
+        #pi-cursor.click {
+            transform: translate(-50%, -50%) scale(0.85);
+        }
+
+        /* Show custom cursor only on fine pointers (desktops/laptops) */
+        @media (hover: hover) and (pointer: fine) {
+            body { cursor: none; }
+        }
+
         /* Mobile-specific optimizations */
         @media (max-width: 768px) {
             .container {
@@ -351,11 +380,16 @@
                 background: rgba(255, 255, 255, 0.2);
                 transform: scale(0.95);
             }
+            
+            /* Keep native cursor on touch and hide custom cursor */
+            body { cursor: auto; }
+            #pi-cursor { display: none; }
         }
     </style>
 </head>
 <body>
     <div class="pi-particles" id="particles"></div>
+    <div id="pi-cursor">π</div>
     
     <div class="container">
         <header>
@@ -580,6 +614,28 @@
             container.innerHTML = '';
             createParticles();
         });
+
+        // Custom Pi cursor logic (desktop only)
+        (function initPiCursor() {
+            const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (!isFinePointer) return;
+            const cursorEl = document.getElementById('pi-cursor');
+            if (!cursorEl) return;
+            
+            window.addEventListener('mousemove', (e) => {
+                cursorEl.style.left = e.clientX + 'px';
+                cursorEl.style.top = e.clientY + 'px';
+                cursorEl.style.opacity = '1';
+            });
+            
+            window.addEventListener('mousedown', () => {
+                cursorEl.classList.add('click');
+                setTimeout(() => cursorEl.classList.remove('click'), 150);
+            });
+            
+            document.addEventListener('mouseleave', () => { cursorEl.style.opacity = '0'; });
+            document.addEventListener('mouseenter', () => { cursorEl.style.opacity = '1'; });
+        })();
     </script>
 </body>
 </html>
